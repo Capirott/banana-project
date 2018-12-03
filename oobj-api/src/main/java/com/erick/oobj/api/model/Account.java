@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "ACCOUNT", uniqueConstraints={
 	    @UniqueConstraint(columnNames = {"ACCOUNT_TYPE", "CLIENT_ID"})
@@ -35,8 +37,11 @@ public class Account extends SoninhoEntity {
 	}
 
 	@OneToMany
+	@JsonIgnore
 	private List<Transaction> transactions;
 
+	public Account() {
+	}
 	
 
 	public Account(Long id, AccountType accountType, Agency agency, Client client) {
