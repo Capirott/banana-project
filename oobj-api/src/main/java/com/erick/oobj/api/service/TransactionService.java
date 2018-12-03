@@ -9,10 +9,10 @@ import com.erick.oobj.api.exception.BusinessException;
 import com.erick.oobj.api.model.Transaction;
 import com.erick.oobj.api.repository.SoninhoRepository;
 import com.erick.oobj.api.repository.TransactionRepository;
-import com.erick.oobj.api.repository.filter.SoninhoFilter;
+import com.erick.oobj.api.repository.filter.TransactionFilter;
 
 @Service 
-public class TransactionService extends SoninhoServiceImpl<Transaction, Long, SoninhoFilter> {
+public class TransactionService extends SoninhoServiceImpl<Transaction, Long, TransactionFilter> {
 
 	private static final String TRANSACTION_INSUFFICIENT_BALANCE = "transaction.insufficient-balance";
 	
@@ -20,7 +20,7 @@ public class TransactionService extends SoninhoServiceImpl<Transaction, Long, So
 	private TransactionRepository transactionRepository;
 	
 	@Override
-	protected SoninhoRepository<Transaction, Long, SoninhoFilter> getRepository() {
+	protected SoninhoRepository<Transaction, Long, TransactionFilter> getRepository() {
 		return transactionRepository;
 	}
 

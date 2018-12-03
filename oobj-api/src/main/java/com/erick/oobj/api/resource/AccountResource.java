@@ -5,19 +5,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.erick.oobj.api.model.Account;
-import com.erick.oobj.api.repository.filter.SoninhoFilter;
+import com.erick.oobj.api.repository.filter.AccountFilter;
 import com.erick.oobj.api.service.AccountService;
 import com.erick.oobj.api.service.SoninhoService;
 
 @RestController
 @RequestMapping("/accounts")
-public class AccountResource extends SoninhoResource<Account, Long, SoninhoFilter> {
+public class AccountResource extends SoninhoResource<Account, Long, AccountFilter> {
 
 	@Autowired
 	private AccountService accountService;
 
 	@Override
-	protected SoninhoService<Account, Long, SoninhoFilter> getService() {
+	protected SoninhoService<Account, Long, AccountFilter> getService() {
 		return accountService;
 	}
 

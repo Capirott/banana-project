@@ -37,6 +37,16 @@ public class Account extends SoninhoEntity {
 	@OneToMany
 	private List<Transaction> transactions;
 
+	
+
+	public Account(Long id, AccountType accountType, Agency agency, Client client) {
+		super(id);
+		this.accountType = accountType;
+		this.agency = agency;
+		this.client = client;
+	}
+
+	
 	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
 	}

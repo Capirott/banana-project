@@ -32,6 +32,16 @@ public class Transaction extends SoninhoEntity {
 	@Column(name = "TRANSACTION_TYPE", nullable = false, length = 20)
 	@Enumerated (EnumType.STRING)
 	private TransactionType transactionType;
+	
+	public Transaction(Long id, BigDecimal amount, Account account, Account sourceAccount, Account accountDestination,
+			TransactionType transactionType) {
+		super(id);
+		this.amount = amount;
+		this.account = account;
+		this.sourceAccount = sourceAccount;
+		this.accountDestination = accountDestination;
+		this.transactionType = transactionType;
+	}
 
 	public BigDecimal getAmount() {
 		return amount;
@@ -72,7 +82,5 @@ public class Transaction extends SoninhoEntity {
 	public void setTransactionType(TransactionType transactionType) {
 		this.transactionType = transactionType;
 	}
-	
-	
 	
 }

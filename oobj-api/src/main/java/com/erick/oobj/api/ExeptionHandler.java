@@ -46,7 +46,7 @@ public class ExeptionHandler extends ResponseEntityExceptionHandler {
 		
 		final String messageDebug = cause != null ? cause.toString() : exception.toString();
 
-		List<Exception> exceptions = Arrays.asList(new Exception(message, messageDebug));
+		List<SoninhoExceptionCustom> exceptions = Arrays.asList(new SoninhoExceptionCustom(message, messageDebug));
 
 		return handleExceptionInternal(exception, exceptions, headers, HttpStatus.BAD_REQUEST, request);
 	}
@@ -55,7 +55,7 @@ public class ExeptionHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 
-		List<Exception> exceptions = createErrorList(exception.getBindingResult());
+		List<SoninhoExceptionCustom> exceptions = createErrorList(exception.getBindingResult());
 
 		return handleExceptionInternal(exception, exceptions, headers, status, request);
 	}
@@ -66,7 +66,7 @@ public class ExeptionHandler extends ResponseEntityExceptionHandler {
 
 		String messageDebug = ExceptionUtils.getRootCauseMessage(exception);
 		
-		List<Exception> exceptions = Arrays.asList(new Exception(message, messageDebug));
+		List<SoninhoExceptionCustom> exceptions = Arrays.asList(new SoninhoExceptionCustom(message, messageDebug));
 
 		return handleExceptionInternal(exception, exceptions, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
@@ -78,7 +78,7 @@ public class ExeptionHandler extends ResponseEntityExceptionHandler {
 
 		String messageDebug = exception.toString();
 		
-		List<Exception> exceptions = Arrays.asList(new Exception(message, messageDebug));
+		List<SoninhoExceptionCustom> exceptions = Arrays.asList(new SoninhoExceptionCustom(message, messageDebug));
 
 		return handleExceptionInternal(exception, exceptions, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
 	}
@@ -90,14 +90,14 @@ public class ExeptionHandler extends ResponseEntityExceptionHandler {
 
 		String messageDebug = exception.toString();
 		
-		List<Exception> exceptions = Arrays.asList(new Exception(message, messageDebug));
+		List<SoninhoExceptionCustom> exceptions = Arrays.asList(new SoninhoExceptionCustom(message, messageDebug));
 
 		return ResponseEntity.badRequest().body(exceptions);
 	}
 	
-	private List<Exception> createErrorList(BindingResult bindingResult) {
+	private List<SoninhoExceptionCustom> createErrorList(BindingResult bindingResult) {
 
-		List<Exception> exceptions = new ArrayList<>();
+		List<SoninhoExceptionCustom> exceptions = new ArrayList<>();
 
 		for (FieldError fieldError : bindingResult.getFieldErrors()) {
 
@@ -105,17 +105,17 @@ public class ExeptionHandler extends ResponseEntityExceptionHandler {
 
 			String messageDebug = fieldError.toString();
 
-			exceptions.add(new Exception(message, messageDebug));
+			exceptions.add(new SoninhoExceptionCustom(message, messageDebug));
 		}
 
 		return exceptions;
 	}
 
-	public static class Exception {
+	public static class SoninhoExceptionCustom {
 		private String message;
 		private String cause;
 
-		public Exception(String message, String messageDebug) {
+		public SoninhoExceptionCustom(String message, String messageDebug) {
 			super();
 			this.message = message;
 			this.cause = messageDebug;

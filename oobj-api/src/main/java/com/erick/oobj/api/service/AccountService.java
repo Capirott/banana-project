@@ -12,10 +12,10 @@ import com.erick.oobj.api.model.Agency;
 import com.erick.oobj.api.model.Client;
 import com.erick.oobj.api.repository.AccountRepository;
 import com.erick.oobj.api.repository.SoninhoRepository;
-import com.erick.oobj.api.repository.filter.SoninhoFilter;
+import com.erick.oobj.api.repository.filter.AccountFilter;
 
 @Service
-public class AccountService extends SoninhoServiceImpl<Account, Long, SoninhoFilter> {
+public class AccountService extends SoninhoServiceImpl<Account, Long, AccountFilter> {
 
 	private static final String CLIENT_NOT_FOUND = "client.not-found";
 
@@ -31,7 +31,7 @@ public class AccountService extends SoninhoServiceImpl<Account, Long, SoninhoFil
 	private ClientService clientService;
 
 	@Override
-	protected SoninhoRepository<Account, Long, SoninhoFilter> getRepository() {
+	protected SoninhoRepository<Account, Long, AccountFilter> getRepository() {
 
 		return accountRepository;
 	}
@@ -48,7 +48,7 @@ public class AccountService extends SoninhoServiceImpl<Account, Long, SoninhoFil
 	}
 
 	@Override
-	public List<Account> filter(SoninhoFilter filter) {
-		return null;
+	public List<Account> filter(AccountFilter filter) {
+		return accountRepository.findAll(filter);
 	}
 }

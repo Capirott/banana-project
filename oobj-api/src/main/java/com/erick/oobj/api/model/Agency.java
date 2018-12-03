@@ -18,10 +18,10 @@ public class Agency extends SoninhoEntity {
 	@Size(min = 3, max = 50)
 	private String name;
 
-	public Agency () {}
+	public Agency() {}
 	
-	public Agency(@NotNull Address address, @NotNull @Size(min = 3, max = 50) String name) {
-		super();
+	public Agency(Long id, Address address, String name) {
+		super(id);
 		this.address = address;
 		this.name = name;
 	}

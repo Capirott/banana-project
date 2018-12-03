@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.util.StringUtils;
 
 import com.erick.oobj.api.model.Client;
-import com.erick.oobj.api.repository.ClientRepositoryQuery;
 import com.erick.oobj.api.repository.filter.ClientFilter;
+import com.erick.oobj.api.repository.query.ClientRepositoryQuery;
 
 public class ClientRepositoryImpl extends SoninhoRepositoryImpl<Client, ClientFilter> implements ClientRepositoryQuery {
 
