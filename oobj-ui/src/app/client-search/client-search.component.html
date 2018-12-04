@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>Transaction</h1>
+    </div>
+
+    <div class="ui-g-12 ui-fluid">
+      <label>Client Name</label>
+      <input pInputText type="text">
+    </div>
+
+    <div class="ui-g-12">
+      <label style="display:block">Operation Date</label>
+      <input pInputText text="text" style="width: 95px;">
+      <label> and </label>
+      <input pInputText text="text" style="width: 95px;">
+    </div>
+
+    <div class="ui-g-12">
+      <button pButton type="submit" label="Search"></button>
+    </div>
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+
+        <p-dataTable [value]="transactions" [paginator]="true" [rows] = 2>
+
+          <p-column field="client.name" header="Client name"></p-column>
+          <p-column field="amount" header="Amount" styleClass="col-value"></p-column>
+          <p-column field="operationDate" header="Date" styleClass="col-date"></p-column>
+          <p-column field="transactionType" header="Type" styleClass="col-type">
+            <ng-template let-val="rowData" pTemplate="body">
+              <span [ngStyle]="{color: val.transactionType === 'TRANSF' ? 'green' : (val.transactionType === 'DEPOSIT' ? 'blue' : 'red')}">{{val.transactionType}}</span>
+            </ng-template>
+          </p-column>
+          <p-column  styleClass="col-actions">
+          <ng-template pTemplate="body">
+            <a pButton icon="fa fa-pencil" pTooltip="Edit" tooltipPosition="top"></a>
+            <a pButton icon="fa fa-trash" pTooltip="Delete" tooltipPosition="top"></a>
+          </ng-template>
+          </p-column>
+
+        </p-dataTable>
+
+      </div>
+      <div class="ui-g-12">
+        <a pButton type="submit" label="New Transaction"></a>
+      </div>
+
+    </div>
+
+  </div>
+</div>
