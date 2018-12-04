@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="ui-g">
+
+    <form autocomplete="off" (ngSubmit)="find()">
+
+      <div class="ui-g-12">
+        <h1>Clients</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Name</label>
+        <input pInputText type="text" name="name" [(ngModel)]="filter.name">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Search"></button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="clients" [responsive]="true" emptyMessage="No client found" [paginator]="true" [rows]="filter.itensPerPage"
+        [lazy]="true" [totalRecords]="totalRecords" (onLazyLoad)="onPageChange($event)" #tabela>
+        <p-column field="name" header="Name"></p-column>
+        <p-column field="cpf" header="CPF"></p-column>
+        <p-column field="address.city" header="City"></p-column>
+        <p-column field="address.state" header="State"></p-column>
+        <p-column styleClass="col-actions">
+          <ng-template let-cli="rowData" pTemplate="body">
+            <button pButton icon="fa fa-pencil" pTooltip="Edit" tooltipPosition="top" [routerLink]="['/clients', cli.id]"></button>
+            <button pButton icon="fa fa-trash" pTooltip="Remove" tooltipPosition="top" (click)="confirmDelete(cli)"></button>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+
+    <div class="ui-g-12">
+      <a pButton label="New Client" routerLink="/client/new"></a>
+    </div>
+  </div>
+
+</div>

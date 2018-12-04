@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.erick.oobj.api.model.SoninhoEntity;
 import com.erick.oobj.api.repository.SoninhoRepository;
@@ -57,8 +59,8 @@ public abstract class SoninhoServiceImpl<B extends SoninhoEntity, T, F extends S
 	}
 	
 	@Override
-	public List<B> filter(F filter) {
-		return getRepository().findAll(filter);
+	public Page<B> filter(F filter, Pageable pageable) {
+		return getRepository().findAll(filter, pageable);
 	}
 	
 }

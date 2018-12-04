@@ -1,2 +1,13 @@
 <app-navbar></app-navbar>
-<app-client-search></app-client-search>
+<router-outlet></router-outlet>
+
+<ng2-toasty></ng2-toasty>
+
+<p-confirmDialog header="Confirm" icon="fa fa-question-circle" #confirm>
+  <p-footer>
+    <button type="button" pButton icon="fa fa-check" label="Yes"
+      (click)="confirm.accept()"></button>
+    <button type="button" pButton icon="fa fa-times" label="No"
+      (click)="confirm.reject()"></button>
+  </p-footer>
+</p-confirmDialog>

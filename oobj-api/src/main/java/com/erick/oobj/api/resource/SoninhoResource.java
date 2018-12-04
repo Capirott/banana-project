@@ -1,12 +1,12 @@
 package com.erick.oobj.api.resource;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -57,7 +57,7 @@ public abstract class SoninhoResource<B extends SoninhoEntity, T, F extends Soni
 	}
 	
 	@GetMapping
-	public List<B> find(F filter) {
-		return getService().filter(filter);
+	public Page<B> find(F filter, Pageable pageable) {
+		return getService().filter(filter, pageable);
 	}
 }

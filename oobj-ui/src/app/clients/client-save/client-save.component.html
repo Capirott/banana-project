@@ -1,0 +1,91 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (ngSubmit)="save(f)">
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>New Client</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Name</label>
+        <input pInputText type="text" name="name"
+          [(ngModel)]="client.name"
+          #name="ngModel" required minlength="5">
+
+        <app-message [control]="name" error="required"
+          text="Inform the client name"></app-message>
+        <app-message [control]="name" error="minlength"
+          text="Minimum of {{ name.errors?.minlength?.requiredLength }} characters"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Street</label>
+        <input pInputText type="text" name="street"
+          [(ngModel)]="client.address.street"
+          #bairro="ngModel" required>
+
+        <!-- <app-message [control]="street" error="required"
+          text="Inform the street"></app-message> -->
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Zipcode</label>
+        <p-inputMask name="zipcode" mask="99999999"
+          [(ngModel)]="client.address.zipcode"
+          #zipcode="ngModel" required></p-inputMask>
+
+        <app-message [control]="zipcode" error="required"
+          text="Inform the zipcode"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>CPF</label>
+        <p-inputMask name="cpf" mask="99999999999"
+          [(ngModel)]="client.cpf"
+          #cpf="ngModel" required></p-inputMask>
+
+        <app-message [control]="cpf" error="required"
+          text="Inform the cpf"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Phone Number</label>
+        <p-inputMask name="phoneNumber" mask="99 9999999"
+          [(ngModel)]="client.phoneNumber"
+          #phoneNumber="ngModel" required></p-inputMask>
+
+        <app-message [control]="phoneNumber" error="required"
+          text="Inform the Phone Number"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>State</label>
+        <input pInputText type="text" name="state"
+          [(ngModel)]="client.address.state"
+          #state="ngModel" required>
+
+          <app-message [control]="state" error="required"
+          text="Inform the state"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>City</label>
+        <input pInputText type="text" name="city"
+          [(ngModel)]="client.address.city"
+          #city="ngModel" required>
+
+          <app-message [control]="city" error="required"
+          text="Inform the city"></app-message>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Save" [disabled]="f.invalid"></button>
+        <button pButton type="button" label="New" class="ui-button-info"
+          (click)="resetForm(f)"></button>
+
+        <a routerLink="/clients">Return to search</a>
+      </div>
+    </div>
+
+  </form>
+</div>

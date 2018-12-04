@@ -1,6 +1,5 @@
 package com.erick.oobj.api.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +44,5 @@ public class AccountService extends SoninhoServiceImpl<Account, Long, AccountFil
 		Optional.ofNullable(entity).map(Account::getClient).map(Client::getId).flatMap(clientService::findById)
 				.orElseThrow(() -> new BusinessException(CLIENT_NOT_FOUND));
 
-	}
-
-	@Override
-	public List<Account> filter(AccountFilter filter) {
-		return accountRepository.findAll(filter);
 	}
 }
