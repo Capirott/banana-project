@@ -1,0 +1,60 @@
+<div class="container">
+  <form autocomplete="off" (ngSubmit)="find()">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Transaction</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Client Name</label>
+        <input pInputText type="text">
+      </div>
+
+      <div class="ui-g-12">
+        <label style="display:block">Operation Date</label>
+        <p-calendar name="dateRange" selectionMode="range" [readonlyInput]="true"></p-calendar>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Search"></button>
+      </div>
+
+      <div class="ui-g">
+        <div class="ui-g-12">
+
+          <p-dataTable [value]="transactions" [paginator]="true" [rows]="2" (onLazyLoad)="onPageChange($event)">
+            <p-column field="account.client.name" header="Client name"></p-column>
+            <p-column field="amount" header="Amount" styleClass="col-value">
+              <ng-template let-val="rowData" pTemplate="body">
+                {{val.amount | currency:undefined:true:'1.2-2'}}
+              </ng-template>
+            </p-column>
+            <p-column field="operationDate" header="Date" styleClass="col-date">
+              <ng-template let-val="rowData" pTemplate="body">
+                {{val.operationDate | date:'MM/dd/yyyy'}}
+              </ng-template>
+            </p-column>
+            <p-column field="transactionType" header="Type" styleClass="col-type">
+              <ng-template let-val="rowData" pTemplate="body">
+                <span [ngStyle]="{color: val.transactionType === 'TRANSF' ? 'green' : (val.transactionType === 'DEPOSIT' ? 'blue' : 'red')}">{{val.transactionType}}</span>
+              </ng-template>
+            </p-column>
+            <p-column styleClass="col-actions">
+              <ng-template let-val="rowData" pTemplate="body">
+                <button pButton icon="fa fa-eye" pTooltip="Show" tooltipPosition="top" [routerLink]="['/transactions', val.id]"></button>
+                <button pButton icon="fa fa-trash" pTooltip="Delete" tooltipPosition="top"></button>
+              </ng-template>
+            </p-column>
+
+          </p-dataTable>
+
+        </div>
+        <div class="ui-g-12">
+          <a pButton type="submit" label="New Transaction" routerLink="/transactions/new"></a>
+        </div>
+
+      </div>
+
+    </div>
+  </form>
+</div>

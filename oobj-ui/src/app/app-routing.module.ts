@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './core/page-not-found.component';
 import { ClientsSearchComponent } from './clients/clients-search/clients-search.component';
 import { ClientSaveComponent } from './clients/client-save/client-save.component';
+import { TransactionsSearchComponent } from './transactions/transactions-search/transactions-search.component';
+import { TransactionSaveComponent } from './transactions/transaction-save/transaction-save.component';
 
 
 const routes: Routes = [
@@ -11,6 +13,8 @@ const routes: Routes = [
   { path: 'clients', component: ClientsSearchComponent },
   { path: 'clients/new', component: ClientSaveComponent },
   { path: 'clients/:id', component: ClientSaveComponent },
+  { path: 'transactions', component: TransactionsSearchComponent },
+  { path: 'transactions/:id', component: TransactionSaveComponent },
   { path: 'page-not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: 'page-not-found' }
 ];

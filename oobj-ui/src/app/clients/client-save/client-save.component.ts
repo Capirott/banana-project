@@ -30,18 +30,18 @@ export class ClientSaveComponent implements OnInit {
   ngOnInit() {
     const idClient = this.route.snapshot.params['id'];
 
-    this.title.setTitle('Nova client');
+    this.title.setTitle('New client');
 
     if (idClient) {
-      this.carregarClient(idClient);
+      this.getClient(idClient);
     }
   }
 
-  get editando() {
-    return Boolean(this.client.id)
+  get editing() {
+    return Boolean(this.client.id);
   }
 
-  carregarClient(id: number) {
+  getClient(id: number) {
     this.clientService.findById(id)
       .then(client => {
         this.client = client;
@@ -51,14 +51,14 @@ export class ClientSaveComponent implements OnInit {
   }
 
   save(form: FormControl) {
-    if (this.editando) {
+    if (this.editing) {
       this.updateClient(form);
     } else {
       this.addClient(form);
     }
   }
 
-  addClient(form: FormControl) {
+  addClient(_form: FormControl) {
     this.clientService.create(this.client)
       .then(clientAdded => {
         this.toasty.success('Client created successfully!');
@@ -67,12 +67,12 @@ export class ClientSaveComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
-  updateClient(form: FormControl) {
+  updateClient(_form: FormControl) {
     this.clientService.update(this.client)
       .then(client => {
         this.client = client;
 
-        this.toasty.success('Client alterada com sucesso!');
+        this.toasty.success('Client updated sucessfully!');
         this.updateTitle();
       })
       .catch(erro => this.errorHandler.handle(erro));

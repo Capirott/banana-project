@@ -10,8 +10,8 @@ export class TransactionSaveComponent implements OnInit {
   transactionTypes = [
     { label: 'Deposit', value: 'DEPOSIT' },
     { label: 'Transfer', value: 'TRANSFER' },
-    { label: 'Withdrawal', value: 'WITHDRAWAL' },
-  ]
+    { label: 'Withdrawal', value: 'WITHDRAWAL' }
+  ];
 
   constructor() { }
 

@@ -13,6 +13,8 @@ import { ErrorHandlerService } from './error-handler.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { ClientService } from '../clients/client.service';
+import { TransactionService } from './../transactions/transaction.service';
+
 
 @NgModule({
   imports: [
@@ -35,7 +37,7 @@ import { ClientService } from '../clients/client.service';
   providers: [
     ClientService,
     ErrorHandlerService,
-
+    TransactionService,
     ConfirmationService,
     JwtHelper,
     Title

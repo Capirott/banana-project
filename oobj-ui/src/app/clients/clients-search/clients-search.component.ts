@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
 import { ToastyService } from 'ng2-toasty';
@@ -22,8 +23,11 @@ export class ClientsSearchComponent {
     private clientService: ClientService,
     private errorHandler: ErrorHandlerService,
     private confirmation: ConfirmationService,
-    private toasty: ToastyService
-  ) { }
+    private toasty: ToastyService,
+    private title: Title
+  ) {
+    this.title.setTitle(`Search client`);
+  }
 
   find(page = 0) {
     this.filter.page = page;
